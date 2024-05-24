@@ -1,9 +1,11 @@
+"use client";
+
 import { scrollDiscoverText } from "@/app/lib/gsap/gsap";
 import { Box, Heading } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 
-const Discover = ({}) => {
+const Discover = () => {
   useEffect(() => {
     scrollDiscoverText();
   }, []);

@@ -22,7 +22,10 @@ export const ScrollProvider = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (lenis.current) lenis.current!.scrollTo(0, { immediate: true });
+    if (lenis.current) {
+      lenis.current!.scrollTo(0, { immediate: true });
+      window.scrollTo(0, 0);
+    }
   }, [router, lenis]);
 
   useEffect(() => {

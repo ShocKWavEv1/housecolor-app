@@ -1,34 +1,37 @@
 "use client";
 
 import {
-  getFragMainShader,
-  getMainShaderHeight,
+  getFragShader,
+  getShaderHeight,
   vertShader,
 } from "@/app/lib/shaders/shaders";
 import { useWindowSize } from "@uidotdev/usehooks";
 import React, { useEffect, useRef } from "react";
 import * as THREE from "three";
-import { SketchProps } from "./model";
+import { SketchSecondaryProps } from "./model";
 
-const SketchMain: React.FC<SketchProps> = ({ orientation, shaderColor }) => {
+const SketchSecondary: React.FC<SketchSecondaryProps> = ({
+  orientation,
+  shaderColor,
+}) => {
   const canvasRef: any = useRef(null);
   const { width, height }: { width: any; height: any } = useWindowSize();
 
   useEffect(() => {
     const vertexShader = vertShader;
-    const fragmentShader = getFragMainShader(shaderColor);
+    const fragmentShader = getFragShader(shaderColor);
 
     // Set up Three.js scene here
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      30,
+      40,
       window.innerWidth / window.innerHeight, // Set the aspect ratio here
       1,
       1000
     );
 
     const renderer = new THREE.WebGLRenderer({ canvas: canvasRef.current });
-    renderer.setSize(width, getMainShaderHeight(width, height, orientation));
+    renderer.setSize(width, getShaderHeight(width, height, orientation));
 
     // Create shader materials using the imported shaders
     const material = new THREE.ShaderMaterial({
@@ -59,7 +62,7 @@ const SketchMain: React.FC<SketchProps> = ({ orientation, shaderColor }) => {
     // Animation and rendering code
     const animate = (time: any) => {
       // Update shader uniforms
-      material.uniforms.time.value = time * 0.0006;
+      material.uniforms.time.value = time * 0.0007;
 
       // Render the scene
       renderer.render(scene, camera);
@@ -78,4 +81,4 @@ const SketchMain: React.FC<SketchProps> = ({ orientation, shaderColor }) => {
   return <canvas ref={canvasRef} style={{ width: "100vw", height: "100vh" }} />;
 };
 
-export default SketchMain;
+export default SketchSecondary;
