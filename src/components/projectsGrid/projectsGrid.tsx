@@ -2,14 +2,11 @@ import { Box } from "@chakra-ui/react";
 import SectionHeader from "../sectionHeader/sectionHeader";
 import ColumnImages from "./columnImages/columnImages";
 import { useEffect, useState } from "react";
-import { useWindowSize } from "@uidotdev/usehooks";
 import { ProjectsGridProps } from "./model";
 
 const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projectList }) => {
-  const { width } = useWindowSize();
-
-  const [projectFirstColumn, setProjectFirst] = useState([]);
-  const [projectSecondColumn, setProjectSecond] = useState([]);
+  const [projectFirstColumn, setProjectFirstColumn] = useState([]);
+  const [projectSecondColumn, setProjectSecondColumn] = useState([]);
 
   useEffect(() => {
     const firstColumn: any = [];
@@ -23,8 +20,9 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projectList }) => {
       }
     });
 
-    setProjectFirst(firstColumn);
-    setProjectSecond(secondColumn);
+    setProjectFirstColumn(firstColumn);
+    setProjectSecondColumn(secondColumn);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

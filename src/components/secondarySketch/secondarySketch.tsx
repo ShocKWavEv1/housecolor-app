@@ -76,6 +76,7 @@ const SketchSecondary: React.FC<SketchSecondaryProps> = ({
     return () => {
       // Cleanup code if necessary
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [width, height]);
 
   return <canvas ref={canvasRef} style={{ width: "100vw", height: "100vh" }} />;

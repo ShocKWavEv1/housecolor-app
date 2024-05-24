@@ -2,7 +2,6 @@ import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { MenuBodyProps } from "./model";
 import { motion } from "framer-motion";
 import { blur, translate } from "../../drawer/animation";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
 
 const MenuBody: React.FC<MenuBodyProps> = ({
@@ -11,8 +10,6 @@ const MenuBody: React.FC<MenuBodyProps> = ({
   setSelectedLink,
   setOpen,
 }) => {
-  const router = useRouter();
-
   const getChars = (word: string) => {
     let chars: any = [];
     word.split("").forEach((char, i) => {

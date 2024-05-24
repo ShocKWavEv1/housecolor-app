@@ -30,6 +30,7 @@ const Reel: React.FC<ReelProps> = ({ videoRef }) => {
         setIsPlaying(false);
       });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

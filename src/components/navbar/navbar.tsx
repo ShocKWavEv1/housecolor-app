@@ -1,7 +1,6 @@
 import { Box, Heading, Show } from "@chakra-ui/react";
 import { useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { NavbarProps } from "./model";
 import circles from "../../../public/static/logo/three_circlces.svg";
 import { navigation } from "./constants";
@@ -41,7 +40,6 @@ const Navbar: React.FC<NavbarProps> = () => {
     }
   });
 
-  const router = useRouter();
   return (
     <Box id="navbar" w="100%" position="absolute" zIndex={3}>
       <SlideY direction={0} delay={0.25} duration={0}>
