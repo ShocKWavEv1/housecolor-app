@@ -7,12 +7,17 @@ import Clients from "@/components/clients/clients";
 import Discover from "@/components/discover/discover";
 import Reel from "@/components/reel/reel";
 import Footer from "@/components/footer/footer";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import ServicesGrid from "@/components/servicesGrid/servicesGrid";
 import { ORANGE_SHADER } from "@/app/lib/shaders/shaders";
 
 const ServicesPage: React.FC<ServicesPageProps> = () => {
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box w="100%" h="auto" overflowX="hidden">
       <Hero

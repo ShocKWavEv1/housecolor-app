@@ -7,8 +7,13 @@ import { MINT_SHADER } from "@/app/lib/shaders/shaders";
 import SectionHeader from "@/components/sectionHeader/sectionHeader";
 import ThumbnailProject from "@/components/thumbnailProject/thumbnailProject";
 import Footer from "@/components/footer/footer";
+import { useEffect } from "react";
 
 const WorkPage: React.FC<WorkPageProps> = ({ contentData }) => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <Box w="100%" h="auto" overflowX="hidden">
       <Hero

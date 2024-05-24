@@ -10,10 +10,14 @@ import ThumbnailProject from "@/components/thumbnailProject/thumbnailProject";
 import Reel from "@/components/reel/reel";
 import Footer from "@/components/footer/footer";
 import DetailClub from "@/components/detailClub/detailClub";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 const AboutPage: React.FC<AboutPageProps> = ({ contentData }) => {
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Box w="100%" h="auto" overflowX="hidden">

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { Box } from "@chakra-ui/react";
 import { HomePageProps } from "./model";
 import Clients from "@/components/clients/clients";
@@ -16,6 +16,10 @@ import Footer from "@/components/footer/footer";
 
 const HomePage: React.FC<HomePageProps> = ({ contentData }) => {
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <Box>
