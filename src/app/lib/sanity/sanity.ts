@@ -38,5 +38,6 @@ export const handleImagesUrl = (id: any) => {
 };
 
 export const handleVideoUrl = (id: string) => {
-  return `https://cdn.sanity.io/files/${configSanity.projectId}/${configSanity.dataset}/${id}.mp4`;
+  const videoUrl = id.split("file-").join("").split("-mp4").join("");
+  return `https://cdn.sanity.io/files/${configSanity.projectId}/${configSanity.dataset}/${videoUrl}.mp4`;
 };
