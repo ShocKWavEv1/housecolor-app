@@ -1,16 +1,22 @@
 "use client";
 
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { AboutPageProps } from "./model";
-import Hero from "@/components/hero/hero";
 import { WATERMELON_SHADER } from "@/app/lib/shaders/shaders";
 import FullManifesto from "@/components/fullManifesto/fullManifesto";
 import SectionHeader from "@/components/sectionHeader/sectionHeader";
-import ThumbnailProject from "@/components/thumbnailProject/thumbnailProject";
-import Reel from "@/components/reel/reel";
 import Footer from "@/components/footer/footer";
 import DetailClub from "@/components/detailClub/detailClub";
-import { useEffect, useRef } from "react";
+
+const Hero = dynamic(() => import("@/components/hero/hero"));
+
+const ThumbnailProject = dynamic(
+  () => import("@/components/thumbnailProject/thumbnailProject")
+);
+
+const Reel = dynamic(() => import("@/components/reel/reel"));
 
 const AboutPage: React.FC<AboutPageProps> = ({ contentData }) => {
   const videoRef = useRef(null);

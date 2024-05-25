@@ -1,13 +1,18 @@
 "use client";
 
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { WorkPageProps } from "./model";
-import Hero from "@/components/hero/hero";
 import { MINT_SHADER } from "@/app/lib/shaders/shaders";
 import SectionHeader from "@/components/sectionHeader/sectionHeader";
-import ThumbnailProject from "@/components/thumbnailProject/thumbnailProject";
 import Footer from "@/components/footer/footer";
-import { useEffect } from "react";
+
+const Hero = dynamic(() => import("@/components/hero/hero"));
+
+const ThumbnailProject = dynamic(
+  () => import("@/components/thumbnailProject/thumbnailProject")
+);
 
 const WorkPage: React.FC<WorkPageProps> = ({ contentData }) => {
   useEffect(() => {

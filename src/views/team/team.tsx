@@ -1,11 +1,13 @@
 "use client";
 
+import { useEffect } from "react";
+import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { TeamPageProps } from "./model";
 import Footer from "@/components/footer/footer";
 import { GRASS_SHADER } from "@/app/lib/shaders/shaders";
-import Hero from "@/components/hero/hero";
-import { useEffect } from "react";
+
+const Hero = dynamic(() => import("@/components/hero/hero"));
 
 const TeamPage: React.FC<TeamPageProps> = ({ contentData }) => {
   useEffect(() => {

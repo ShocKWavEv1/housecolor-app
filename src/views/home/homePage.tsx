@@ -6,7 +6,6 @@ import { Box } from "@chakra-ui/react";
 import { HomePageProps } from "./model";
 import Clients from "@/components/clients/clients";
 import Discover from "@/components/discover/discover";
-import Capture from "@/components/capture/capture";
 import Footer from "@/components/footer/footer";
 
 const NoiseGradient = dynamic(
@@ -24,6 +23,8 @@ const Reel = dynamic(() => import("@/components/reel/reel"));
 const ParallaxGrid = dynamic(
   () => import("@/components/parallaxGrid/parallaxGrid")
 );
+
+const Capture = dynamic(() => import("@/components/capture/capture"));
 
 const Team = dynamic(() => import("@/components/team/team"));
 

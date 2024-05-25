@@ -1,15 +1,18 @@
 "use client";
 
+import dynamic from "next/dynamic";
+import { useEffect, useRef } from "react";
 import { Box } from "@chakra-ui/react";
 import { ServicesPageProps } from "./model";
-import Hero from "@/components/hero/hero";
 import Clients from "@/components/clients/clients";
 import Discover from "@/components/discover/discover";
-import Reel from "@/components/reel/reel";
 import Footer from "@/components/footer/footer";
-import { useEffect, useRef } from "react";
 import ServicesGrid from "@/components/servicesGrid/servicesGrid";
 import { ORANGE_SHADER } from "@/app/lib/shaders/shaders";
+
+const Hero = dynamic(() => import("@/components/hero/hero"));
+
+const Reel = dynamic(() => import("@/components/reel/reel"));
 
 const ServicesPage: React.FC<ServicesPageProps> = () => {
   const videoRef = useRef(null);
