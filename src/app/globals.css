@@ -177,7 +177,7 @@ svg rect {
 }
 
 .loader {
-  width: 150px;
+  width: 250px;
   height: 1px;
   display: inline-block;
   position: relative;

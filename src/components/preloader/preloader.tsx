@@ -41,17 +41,6 @@ const Preloader: React.FC<PreloaderProps> = () => {
           justifyContent="center"
           flexDirection="column"
         >
-          {/*<Box
-            pb="20px"
-            w="60px"
-            pointerEvents="all"
-            cursor="pointer"
-            className="link"
-          >
-            <SlideY direction={0} delay={0.25} duration={0.75}>
-              <Image priority src={circles} alt="housecolor logo" />
-            </SlideY>
-          </Box>*/}
           <Box className="text-container">
             <TextMaskY
               text={["housecolor | studio"]}
@@ -68,6 +57,26 @@ const Preloader: React.FC<PreloaderProps> = () => {
               className=""
               once
             />
+            <motion.div
+              key={"curtain"}
+              exit={{
+                transition: { duration: 1 },
+                opacity: 0,
+                y: 0,
+                display: "none",
+              }}
+              initial={{ opacity: 0, y: 0 }}
+              animate={{
+                transition: { delay: 0.4, duration: 1 },
+                opacity: 1,
+                y: 0,
+              }}
+              style={{ width: "auto", display: "flex" }}
+            >
+              <Box>
+                <span className="loader"></span>
+              </Box>
+            </motion.div>
           </Box>
         </Box>
       </Box>
