@@ -30,7 +30,7 @@ export const handleImagesUrl = (id: any) => {
 
   const cleanString = id.replace(imageRegex, "").replace(extensionRegex, "");
 
-  const extension = id.match(/-(png|jpg|jpeg)$/i)[0];
+  const extension = id.match(/-(png|jpg|jpeg|webp)$/i)[0];
 
   const cleanExtension = extension.replace("-", "");
 
