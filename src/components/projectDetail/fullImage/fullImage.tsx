@@ -1,7 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { FullImageProps } from "./model";
-import BlurredImage from "@/components/blurredImage/blurredImage";
+import Image from "next/image";
 
 const FullImage: React.FC<FullImageProps> = ({ image, base64 }) => {
   return (
@@ -12,7 +12,15 @@ const FullImage: React.FC<FullImageProps> = ({ image, base64 }) => {
         viewport={{ once: false }}
         transition={{ duration: 1 }}
       >
-        <BlurredImage image={image} base64={base64} />
+        <Image
+          src={image}
+          alt={image}
+          width={500}
+          height={500}
+          placeholder="blur"
+          blurDataURL={base64}
+          style={{ width: "100%", objectFit: "cover" }}
+        />
       </motion.div>
     </Box>
   );
