@@ -1,18 +1,31 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
+import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { HomePageProps } from "./model";
 import Clients from "@/components/clients/clients";
-import NoiseGradient from "@/components/noiseGradient/noiseGradient";
-import Manifesto from "@/components/manifesto/manifesto";
 import Discover from "@/components/discover/discover";
-import Reel from "@/components/reel/reel";
 import Capture from "@/components/capture/capture";
-import ParallaxGrid from "@/components/parallaxGrid/parallaxGrid";
-import Team from "@/components/team/team";
-import ProjectsGrid from "@/components/projectsGrid/projectsGrid";
 import Footer from "@/components/footer/footer";
+
+const NoiseGradient = dynamic(
+  () => import("@/components/noiseGradient/noiseGradient")
+);
+
+const ProjectsGrid = dynamic(
+  () => import("@/components/projectsGrid/projectsGrid")
+);
+
+const Manifesto = dynamic(() => import("@/components/manifesto/manifesto"));
+
+const Reel = dynamic(() => import("@/components/reel/reel"));
+
+const ParallaxGrid = dynamic(
+  () => import("@/components/parallaxGrid/parallaxGrid")
+);
+
+const Team = dynamic(() => import("@/components/team/team"));
 
 const HomePage: React.FC<HomePageProps> = ({ contentData }) => {
   const videoRef = useRef(null);
