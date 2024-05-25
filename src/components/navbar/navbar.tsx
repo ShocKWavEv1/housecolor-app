@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = () => {
               alignItems="center"
               justifyContent="flex-start"
             >
-              <Link href="/">
+              <Link href="/" prefetch>
                 <Box
                   w="auto"
                   display="flex"

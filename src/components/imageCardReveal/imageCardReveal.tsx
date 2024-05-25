@@ -27,7 +27,7 @@ const ImageCardReveal: React.FC<ImageCardRevealProps> = ({
       flexDirection="column"
       className="image-gallery"
     >
-      <Link href={link}>
+      <Link href={link} prefetch>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

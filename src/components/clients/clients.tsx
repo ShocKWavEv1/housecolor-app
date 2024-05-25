@@ -71,7 +71,7 @@ const Clients: React.FC<ClientsProps> = ({}) => {
               duration: 1,
             }}
           >
-            <Link href="/work">
+            <Link href="/work" prefetch>
               <Button size="sm" variant="solid" colorScheme="primary">
                 <Text variant="SMREGULAR">Discover more projects</Text>
               </Button>

@@ -61,7 +61,7 @@ const MenuBody: React.FC<MenuBodyProps> = ({
                   setOpen();
                 }}
               >
-                <Link href={item.path}>
+                <Link href={item.path} prefetch>
                   <Heading
                     as="span"
                     variant={[

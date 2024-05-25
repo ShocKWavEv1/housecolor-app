@@ -12,7 +12,7 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
   const [isActive, setIsActive] = useState(false);
 
   return (
-    <Link href={`/work/${project.slug.current}`}>
+    <Link href={`/work/${project.slug.current}`} prefetch>
       <Box
         w="100%"
         display="flex"
