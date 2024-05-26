@@ -66,12 +66,12 @@ const Column = ({ images, y }: { images: any; y: any }) => {
     <motion.div className={styles.column} style={{ y }}>
       {images.map((src: any, i: any) => {
         return (
-          <div key={i} className={styles.imageContainer}>
+          <div key={src?.base64} className={styles.imageContainer}>
             <Image
-              src={src.mainImage}
+              src={src?.mainImage}
               alt="image"
               placeholder="blur"
-              blurDataURL={src.base64}
+              blurDataURL={src?.base64}
               fill
             />
           </div>

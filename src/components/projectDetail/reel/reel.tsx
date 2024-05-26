@@ -47,7 +47,6 @@ const ReelProject: React.FC<ReelProps> = ({
       }}
     >
       <Box display={showFullReel ? "none" : "block"}>
-        {isVideoLoading && <BlurredImage image={base64} base64={base64} />}
         <video
           ref={videoRef}
           controls={false}

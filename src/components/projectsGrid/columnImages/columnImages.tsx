@@ -28,8 +28,8 @@ const ColumnImages: React.FC<ColumnImagesProps> = ({
             <ImageCardReveal
               key={item.name}
               item={item}
-              image={item.mainImage}
-              base64={item.base64}
+              image={item?.mainImage}
+              base64={item?.base64}
               link={`work/${item.slug.current}`}
               height="auto"
             />

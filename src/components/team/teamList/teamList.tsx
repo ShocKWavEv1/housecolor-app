@@ -30,9 +30,9 @@ const TeamList: React.FC<TeamListProps> = ({
         {teamList.map((item: any, i: number) => {
           return (
             <ImageCardReveal
-              key={i}
+              key={item?.base64}
               item={item}
-              image={item.mainImage}
+              image={item?.mainImage}
               base64={item.base64}
               link="/team"
               height="auto"
