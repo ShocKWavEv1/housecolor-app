@@ -7,6 +7,8 @@ import { HomePageProps } from "./model";
 import Clients from "@/components/clients/clients";
 import Discover from "@/components/discover/discover";
 import Footer from "@/components/footer/footer";
+import Cursor from "@/components/cursor/customCursor";
+import { customCursor } from "@/app/lib/gsap/gsap";
 
 const NoiseGradient = dynamic(
   () => import("@/components/noiseGradient/noiseGradient")

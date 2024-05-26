@@ -9,6 +9,9 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/navbar/navbar";
 import Preloader from "@/components/preloader/preloader";
 import PageTransition from "@/components/pageTransition/pageTransition";
+import { customCursor } from "./lib/gsap/gsap";
+import Cursor from "@/components/cursor/customCursor";
+import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 
 export function Providers({
   children,
@@ -17,10 +20,18 @@ export function Providers({
 
   const pathname = usePathname();
 
+  const videoRef = useRef(null);
+
+  const isTouch = useIsTouchDevice();
+
   useEffect(() => {
     if (LoadingBarRef.current) {
       LoadingBarRef.current.continuousStart();
     }
+    !isTouch &&
+      setTimeout(() => {
+        customCursor(videoRef);
+      }, 2500);
   }, [pathname]);
 
   useEffect(() => {
@@ -39,6 +50,7 @@ export function Providers({
     <ChakraProvider theme={theme}>
       <Preloader />
       <LoadingBar ref={LoadingBarRef} height={3} color="#ff98a2" />
+      {!isTouch && <Cursor />}
       <PageTransition pathname={pathname}>
         <ScrollProvider>
           <Navbar />

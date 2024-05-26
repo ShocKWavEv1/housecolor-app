@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({}) => {
       justifyContent="flex-start"
       flexDirection="column"
       p={[
-        "0px 20px 0px 20px",
+        "40px 20px 0px 20px",
         "60px 30px 0px 30px",
         "120px 60px 0px 60px",
         "120px 80px 0px 80px",

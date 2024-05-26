@@ -3,6 +3,8 @@
 import { Box } from "@chakra-ui/react";
 import { ReelProps } from "./model";
 import { useEffect, useState } from "react";
+import BlurredImage from "@/components/blurredImage/blurredImage";
+import { base64 } from "./constants";
 
 const ReelProject: React.FC<ReelProps> = ({
   videoRef,
@@ -11,6 +13,7 @@ const ReelProject: React.FC<ReelProps> = ({
 }) => {
   const [showFullReel, setShowFullReel] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [isVideoLoading, setIsVideoLoading] = useState(true);
 
   const handlePlayPause = () => {
     if (videoRef.current) {
@@ -37,7 +40,6 @@ const ReelProject: React.FC<ReelProps> = ({
   }, []);
   return (
     <Box
-      bg="primary.500"
       className="play-cursor"
       onClick={() => {
         setShowFullReel(true);
@@ -45,6 +47,7 @@ const ReelProject: React.FC<ReelProps> = ({
       }}
     >
       <Box display={showFullReel ? "none" : "block"}>
+        {isVideoLoading && <BlurredImage image={base64} base64={base64} />}
         <video
           ref={videoRef}
           controls={false}
@@ -55,6 +58,9 @@ const ReelProject: React.FC<ReelProps> = ({
           width="100%"
           height="100%"
           onClick={handlePlayPause}
+          onLoadedData={() => {
+            setIsVideoLoading(false);
+          }}
         >
           <source src={videoReel} type="video/mp4" />
           Your browser does not support the video tag.

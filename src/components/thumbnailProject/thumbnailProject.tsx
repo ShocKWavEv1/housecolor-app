@@ -7,9 +7,12 @@ import { useState } from "react";
 import { anim } from "./constants";
 import Image from "next/image";
 import Link from "next/link";
+import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 
 const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
   const [isActive, setIsActive] = useState(false);
+
+  const isTouchableDevice = useIsTouchDevice();
 
   return (
     <Link href={`/work/${project.slug.current}`} prefetch>
@@ -30,10 +33,10 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
             w="100%"
             h="auto"
             onMouseEnter={() => {
-              setIsActive(true);
+              !isTouchableDevice && setIsActive(true);
             }}
             onMouseLeave={() => {
-              setIsActive(false);
+              !isTouchableDevice && setIsActive(false);
             }}
             className={`project image-gallery `}
           >
