@@ -22,16 +22,10 @@ export function Providers({
 
   const videoRef = useRef(null);
 
-  const isTouch = useIsTouchDevice();
-
   useEffect(() => {
     if (LoadingBarRef.current) {
       LoadingBarRef.current.continuousStart();
     }
-    !isTouch &&
-      setTimeout(() => {
-        customCursor(videoRef);
-      }, 2500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
@@ -52,7 +46,6 @@ export function Providers({
     <ChakraProvider theme={theme}>
       <Preloader />
       <LoadingBar ref={LoadingBarRef} height={3} color="#ff98a2" />
-      {!isTouch && <Cursor />}
       <PageTransition pathname={pathname}>
         <ScrollProvider>
           <Navbar />

@@ -16,7 +16,6 @@
     "@plaiceholder/next": "^3.0.0",
     "@sanity/client": "^6.18.3",
     "@studio-freight/lenis": "^1.0.42",
-    "@studio-lumio/hooks": "^0.1.37",
     "@uidotdev/usehooks": "^2.4.1",
     "framer-motion": "^11.2.6",
     "gsap": "^3.12.5",
