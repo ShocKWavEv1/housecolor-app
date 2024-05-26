@@ -26,7 +26,7 @@ export const handleCategoriesToString = (categories: any) => {
 
 export const handleImagesUrl = (id: any) => {
   const imageRegex = /^image-/;
-  const extensionRegex = /-(png|jpg|jpeg)$/i;
+  const extensionRegex = /-(png|jpg|jpeg|webp)$/i;
 
   const cleanString = id.replace(imageRegex, "").replace(extensionRegex, "");
 
