@@ -60,10 +60,6 @@ export default async function getHomeData(): Promise<any> {
       crew,
     };
   } catch (error) {
-    return {
-      projects: [],
-      parallaxGrid: [],
-      crew: [],
-    };
+    throw new ApiFailedError();
   }
 }
