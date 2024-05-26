@@ -28,7 +28,7 @@ const WorkPage: React.FC<WorkPageProps> = ({ contentData }) => {
       <Box
         w="100%"
         p={[
-          "80px 20px 100px 20px",
+          "80px 20px 40px 20px",
           "80px 30px 100px 30px",
           "100px 60px 120px 60px",
           "100px 80px 120px 80px",

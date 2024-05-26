@@ -35,7 +35,7 @@ const AboutPage: React.FC<AboutPageProps> = ({ contentData }) => {
       <Box
         w="100%"
         p={[
-          "60px 20px 100px 20px",
+          "60px 20px 40px 20px",
           "60px 30px 100px 30px",
           "120px 60px 40px 60px",
           "120px 80px 40px 80px",
