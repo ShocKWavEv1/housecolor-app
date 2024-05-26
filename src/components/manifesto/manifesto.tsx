@@ -16,20 +16,22 @@ const Manifesto: React.FC<ManifestoProps> = ({}) => {
   }
 
   useEffect(() => {
-    const anim = gsap.to(lettersRef.current, {
-      scrollTrigger: {
-        trigger: triggerRef.current,
-        scrub: true,
-        start: "top center",
-        end: "bottom 80%",
-      },
-      color: "#FFF",
-      duration: 5,
-      stagger: 1,
-    });
-    return () => {
-      anim.kill();
-    };
+    setTimeout(() => {
+      const anim = gsap.to(lettersRef.current, {
+        scrollTrigger: {
+          trigger: triggerRef.current,
+          scrub: true,
+          start: "top center",
+          end: "bottom 80%",
+        },
+        color: "#FFF",
+        duration: 5,
+        stagger: 1,
+      });
+      return () => {
+        anim.kill();
+      };
+    }, 2500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
