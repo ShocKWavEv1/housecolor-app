@@ -32,6 +32,7 @@ export function Providers({
       setTimeout(() => {
         customCursor(videoRef);
       }, 2500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   useEffect(() => {
@@ -44,6 +45,7 @@ export function Providers({
     };
 
     handleRouteChange();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
   return (
