@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import getCrewData from "../api/getCrewData";
 import TeamPage from "@/views/team/team";
 
@@ -7,9 +7,7 @@ export default async function Work() {
 
   return (
     <div>
-      <Suspense fallback="loading...">
-        <TeamPage contentData={contentData} />
-      </Suspense>
+      <TeamPage contentData={contentData} />
     </div>
   );
 }

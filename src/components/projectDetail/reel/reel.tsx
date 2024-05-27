@@ -3,8 +3,8 @@
 import { Box } from "@chakra-ui/react";
 import { ReelProps } from "./model";
 import { useEffect, useState } from "react";
-import BlurredImage from "@/components/blurredImage/blurredImage";
 import { base64 } from "./constants";
+import Image from "next/image";
 
 const ReelProject: React.FC<ReelProps> = ({
   videoRef,
@@ -47,7 +47,18 @@ const ReelProject: React.FC<ReelProps> = ({
       }}
     >
       <Box display={showFullReel ? "none" : "block"}>
-        {isVideoLoading && <BlurredImage image={base64} base64={base64} />}
+        {isVideoLoading && (
+          <Image
+            src={base64}
+            alt={base64}
+            placeholder="blur"
+            blurDataURL={base64}
+            width={500}
+            height={500}
+            sizes="100vw"
+            style={{ width: "100%", objectFit: "cover" }}
+          />
+        )}
         <video
           ref={videoRef}
           controls={false}

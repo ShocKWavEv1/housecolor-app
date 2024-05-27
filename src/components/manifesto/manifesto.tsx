@@ -5,8 +5,8 @@ import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import ManifestoScroll from "./manifestoScroll/manifestoScroll";
 
-const Manifesto: React.FC<ManifestoProps> = ({}) => {
-  const [lettersRef, setlettersRef] = useArrayRef();
+const Manifesto: React.FC<ManifestoProps> = () => {
+  const [lettersRef] = useArrayRef();
   const triggerRef: any = useRef(null);
 
   function useArrayRef() {

@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import getWorkData from "../api/getWorkData";
 import AboutPage from "@/views/about/about";
 
@@ -7,9 +7,7 @@ export default async function About() {
 
   return (
     <div>
-      <Suspense fallback="loading...">
-        <AboutPage contentData={contentData} />
-      </Suspense>
+      <AboutPage contentData={contentData} />
     </div>
   );
 }

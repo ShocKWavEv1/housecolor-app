@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { AboutPageProps } from "./model";
@@ -49,11 +49,13 @@ const AboutPage: React.FC<AboutPageProps> = ({ contentData }) => {
           hasButton={false}
           isDark
         />
-        <Box w="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
-          {contentData?.projects.map((item: any, i: number) => {
-            return <ThumbnailProject key={item.title} project={item} />;
-          })}
-        </Box>
+        <Suspense fallback="loading...">
+          <Box w="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
+            {contentData?.projects.map((item: any, i: number) => {
+              return <ThumbnailProject key={item.title} project={item} />;
+            })}
+          </Box>
+        </Suspense>
       </Box>
       <DetailClub />
       <Reel videoRef={videoRef} />

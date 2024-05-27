@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import getHomeData from "./api/getHomeData";
 import HomePage from "@/views/home/homePage";
 
@@ -7,9 +7,7 @@ export default async function Home() {
 
   return (
     <div>
-      <Suspense fallback="loading...">
-        <HomePage contentData={contentData} />
-      </Suspense>
+      <HomePage contentData={contentData} />
     </div>
   );
 }

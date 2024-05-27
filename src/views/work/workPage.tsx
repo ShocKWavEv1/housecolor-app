@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { Suspense, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { WorkPageProps } from "./model";
@@ -42,11 +42,13 @@ const WorkPage: React.FC<WorkPageProps> = ({ contentData }) => {
           hasButton={false}
           isDark
         />
-        <Box w="100%" pt={["40px", "50px", "80px", "80px", "80px"]}>
-          {contentData?.projects.map((item: any, i: number) => {
-            return <ThumbnailProject key={item.name} project={item} />;
-          })}
-        </Box>
+        <Suspense fallback={"laoding..."}>
+          <Box w="100%" pt={["40px", "50px", "80px", "80px", "80px"]}>
+            {contentData?.projects.map((item: any, i: number) => {
+              return <ThumbnailProject key={item.name} project={item} />;
+            })}
+          </Box>
+        </Suspense>
       </Box>
       <Footer />
     </Box>

@@ -1,14 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { HomePageProps } from "./model";
 import Clients from "@/components/clients/clients";
 import Discover from "@/components/discover/discover";
 import Footer from "@/components/footer/footer";
-import Cursor from "@/components/cursor/customCursor";
-import { customCursor } from "@/app/lib/gsap/gsap";
 
 const NoiseGradient = dynamic(
   () => import("@/components/noiseGradient/noiseGradient")
@@ -40,14 +38,20 @@ const HomePage: React.FC<HomePageProps> = ({ contentData }) => {
   return (
     <Box>
       <NoiseGradient />
-      <ProjectsGrid projectList={contentData.projects} />
+      <Suspense fallback={"laoding..."}>
+        <ProjectsGrid projectList={contentData.projects} />
+      </Suspense>
       <Clients />
       <Manifesto />
       <Discover />
       <Reel videoRef={videoRef} />
       <Capture />
-      <ParallaxGrid parallaxGrid={contentData.parallaxGrid} />
-      <Team crew={contentData.crew} />
+      <Suspense fallback={"laoding..."}>
+        <ParallaxGrid parallaxGrid={contentData.parallaxGrid} />
+      </Suspense>
+      <Suspense fallback={"laoding..."}>
+        <Team crew={contentData.crew} />
+      </Suspense>
       <Footer />
     </Box>
   );
