@@ -51,7 +51,7 @@ export function Providers({
   return (
     <ChakraProvider theme={theme}>
       <Preloader />
-      <LoadingBar ref={LoadingBarRef} height={3} color="#F5E1A4" />
+      <LoadingBar ref={LoadingBarRef} height={3} color="#ff98a2" />
       {!isTouch && <Cursor />}
       <PageTransition pathname={pathname}>
         <ScrollProvider>
