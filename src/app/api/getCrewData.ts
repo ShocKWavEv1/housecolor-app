@@ -1,3 +1,5 @@
+"use server";
+
 import { ApiFailedError } from "@/app/lib/exceptions/exceptions";
 import { configSanity, handleImagesUrl } from "../lib/sanity/sanity";
 import getBase64 from "./getBase64";

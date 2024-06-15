@@ -6,6 +6,7 @@ import HeroText from "./heroText/heroText";
 import { useOrientation } from "@uidotdev/usehooks";
 import { PARIS_SHADER, getMainViewPort } from "@/app/lib/shaders/shaders";
 import SketchMain from "../sketch/sketch";
+import { Suspense } from "react";
 
 const NoiseGradient: React.FC<NoiseGradientProps> = ({}) => {
   const { type } = useOrientation();
