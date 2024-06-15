@@ -31,7 +31,7 @@ export function Providers({
     !isTouch &&
       setTimeout(() => {
         customCursor(videoRef);
-      }, 250);
+      }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
@@ -53,10 +53,12 @@ export function Providers({
       <Preloader />
       <LoadingBar ref={LoadingBarRef} height={3} color="#ff98a2" />
       {!isTouch && <Cursor />}
-      <ScrollProvider>
-        <Navbar />
-        {children}
-      </ScrollProvider>
+      <PageTransition pathname={pathname}>
+        <ScrollProvider>
+          <Navbar />
+          {children}
+        </ScrollProvider>
+      </PageTransition>
     </ChakraProvider>
   );
 }
