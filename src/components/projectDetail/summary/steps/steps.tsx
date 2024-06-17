@@ -1,4 +1,5 @@
 import { Box, SimpleGrid, Stack, Text } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { StepsProps } from "./model";
 import TextMaskY from "@/app/lib/animations/textY/textY";
 import Image from "next/image";
@@ -61,33 +62,54 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
                   >
                     {item.content.map((content: any, idx: number) => {
                       return (
-                        <Box
+                        <motion.div
                           key={content}
-                          pl="20px"
-                          w="100%"
-                          borderLeft="1px solid #F9EBBB"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{
+                            duration: 1,
+                            delay: 0.25,
+                          }}
                         >
-                          <Text variant="MDREGULAR" color="egg.400">
-                            {content}
-                          </Text>
-                        </Box>
+                          <Box
+                            pl="20px"
+                            w="100%"
+                            borderLeft="1px solid #F9EBBB"
+                          >
+                            <Text variant="MDREGULAR" color="egg.400">
+                              {content}
+                            </Text>
+                          </Box>
+                        </motion.div>
                       );
                     })}
                   </SimpleGrid>
                 </Box>
                 {item.images.map((image: any, imgIdx: number) => {
                   return (
-                    <Box key={image.url} w="100%" pt="80px">
-                      <Image
-                        src={image.url}
-                        alt={image.url}
-                        placeholder="blur"
-                        width={400}
-                        height={400}
-                        blurDataURL={image.base64}
-                        style={{ width: "100%", objectFit: "cover" }}
-                      />
-                    </Box>
+                    <motion.div
+                      key={image.url}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{
+                        duration: 1,
+                        delay: 0.25,
+                      }}
+                    >
+                      <Box w="100%" pt="80px">
+                        <Image
+                          src={image.url}
+                          alt={image.url}
+                          placeholder="blur"
+                          width={400}
+                          height={400}
+                          blurDataURL={image.base64}
+                          style={{ width: "100%", objectFit: "cover" }}
+                        />
+                      </Box>
+                    </motion.div>
                   );
                 })}
               </Box>

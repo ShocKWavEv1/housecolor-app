@@ -31,7 +31,7 @@ export function Providers({
     !isTouch &&
       setTimeout(() => {
         customCursor(videoRef);
-      }, 2500);
+      }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
