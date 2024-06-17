@@ -4,10 +4,13 @@ import { ManifestoProps } from "./model";
 import { gsap } from "gsap";
 import { useEffect, useRef } from "react";
 import ManifestoScroll from "./manifestoScroll/manifestoScroll";
+import { usePathname } from "next/navigation";
 
 const Manifesto: React.FC<ManifestoProps> = () => {
   const [lettersRef] = useArrayRef();
   const triggerRef: any = useRef(null);
+
+  const pathname = usePathname();
 
   function useArrayRef() {
     const lettersRef: any = useRef<any>();
@@ -33,7 +36,7 @@ const Manifesto: React.FC<ManifestoProps> = () => {
       };
     }, 2500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [pathname]);
 
   return (
     <Box
