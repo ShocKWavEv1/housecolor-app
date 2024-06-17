@@ -50,7 +50,7 @@ const Preloader: React.FC<PreloaderProps> = () => {
                 "H10THIN",
                 "H10THIN",
                 "H10THIN",
-                "H9THIN",
+                "H9REGULAR",
               ]}
               delay={0.25}
               isFooter={false}
@@ -73,7 +73,7 @@ const Preloader: React.FC<PreloaderProps> = () => {
               }}
               style={{ width: "auto", display: "flex" }}
             >
-              <Box>
+              <Box w="250px" p="15px 30px" display="flex" alignItems="center">
                 <span className="loader"></span>
               </Box>
             </motion.div>
