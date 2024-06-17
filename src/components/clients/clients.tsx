@@ -12,7 +12,7 @@ const Clients: React.FC<ClientsProps> = ({}) => {
       data-bgcolor="#000"
       data-textcolor="#FEFCED"
       w="100%"
-      h="auto"
+      h={["100vh", "100vh", "80vh", "80vh", "80vh"]}
       display="flex"
       alignItems="flex-start"
       justifyContent="center"
