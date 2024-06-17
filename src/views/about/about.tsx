@@ -8,7 +8,8 @@ import { WATERMELON_SHADER } from "@/app/lib/shaders/shaders";
 import FullManifesto from "@/components/fullManifesto/fullManifesto";
 import SectionHeader from "@/components/sectionHeader/sectionHeader";
 import Footer from "@/components/footer/footer";
-import DetailClub from "@/components/detailClub/detailClub";
+import MarqueeScrollText from "@/components/marqueeScrollText/marqueeScrollText";
+import { marqueeText } from "./constants";
 
 const Hero = dynamic(() => import("@/components/hero/hero"));
 
@@ -18,7 +19,7 @@ const ThumbnailProject = dynamic(
 
 const Reel = dynamic(() => import("@/components/reel/reel"));
 
-const AboutPage: React.FC<AboutPageProps> = ({ contentData }) => {
+const AboutPage: React.FC<AboutPageProps> = ({ contentData, contentReel }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -57,8 +58,14 @@ const AboutPage: React.FC<AboutPageProps> = ({ contentData }) => {
           </Box>
         </Suspense>
       </Box>
-      <DetailClub />
-      <Reel videoRef={videoRef} />
+      <Box p="120px 0px 20px 0px">
+        <MarqueeScrollText marqueeText={marqueeText} />
+      </Box>
+      <Reel
+        videoRef={videoRef}
+        videoFull={contentReel.mainReel[0].videoFull}
+        videoReel={contentReel.mainReel[0].videoFile}
+      />
       <Footer />
     </Box>
   );

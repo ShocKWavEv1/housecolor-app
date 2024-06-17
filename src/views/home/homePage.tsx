@@ -5,8 +5,9 @@ import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { HomePageProps } from "./model";
 import Clients from "@/components/clients/clients";
-import Discover from "@/components/discover/discover";
 import Footer from "@/components/footer/footer";
+import MarqueeScrollText from "@/components/marqueeScrollText/marqueeScrollText";
+import { marqueeText } from "./constants";
 
 const NoiseGradient = dynamic(
   () => import("@/components/noiseGradient/noiseGradient")
@@ -28,7 +29,7 @@ const Capture = dynamic(() => import("@/components/capture/capture"));
 
 const Team = dynamic(() => import("@/components/team/team"));
 
-const HomePage: React.FC<HomePageProps> = ({ contentData }) => {
+const HomePage: React.FC<HomePageProps> = ({ contentData, contentReel }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -43,8 +44,12 @@ const HomePage: React.FC<HomePageProps> = ({ contentData }) => {
       </Suspense>
       <Clients />
       <Manifesto />
-      <Discover />
-      <Reel videoRef={videoRef} />
+      <MarqueeScrollText marqueeText={marqueeText} />
+      <Reel
+        videoRef={videoRef}
+        videoFull={contentReel.mainReel[0].videoFull}
+        videoReel={contentReel.mainReel[0].videoFile}
+      />
       <Capture />
       <Suspense fallback={"laoding..."}>
         <ParallaxGrid parallaxGrid={contentData.parallaxGrid} />

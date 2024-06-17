@@ -5,16 +5,17 @@ import { useEffect, useRef } from "react";
 import { Box } from "@chakra-ui/react";
 import { ServicesPageProps } from "./model";
 import Clients from "@/components/clients/clients";
-import Discover from "@/components/discover/discover";
 import Footer from "@/components/footer/footer";
 import ServicesGrid from "@/components/servicesGrid/servicesGrid";
 import { ORANGE_SHADER } from "@/app/lib/shaders/shaders";
+import MarqueeScrollText from "@/components/marqueeScrollText/marqueeScrollText";
+import { marqueeText } from "../home/constants";
 
 const Hero = dynamic(() => import("@/components/hero/hero"));
 
 const Reel = dynamic(() => import("@/components/reel/reel"));
 
-const ServicesPage: React.FC<ServicesPageProps> = () => {
+const ServicesPage: React.FC<ServicesPageProps> = ({ contentReel }) => {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -29,8 +30,12 @@ const ServicesPage: React.FC<ServicesPageProps> = () => {
       />
       <ServicesGrid />
       <Clients />
-      <Discover />
-      <Reel videoRef={videoRef} />
+      <MarqueeScrollText marqueeText={marqueeText} />
+      <Reel
+        videoRef={videoRef}
+        videoFull={contentReel.mainReel[0].videoFull}
+        videoReel={contentReel.mainReel[0].videoFile}
+      />
       <Footer />
     </Box>
   );

@@ -1,1 +1,3 @@
-export interface ServicesPageProps {}
+export interface ServicesPageProps {
+  contentReel: any;
+}

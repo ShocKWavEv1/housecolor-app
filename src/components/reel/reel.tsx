@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { ReelProps } from "./model";
 
-const Reel: React.FC<ReelProps> = ({ videoRef }) => {
+const Reel: React.FC<ReelProps> = ({ videoRef, videoFull, videoReel }) => {
   const [showFullReel, setShowFullReel] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -59,7 +59,7 @@ const Reel: React.FC<ReelProps> = ({ videoRef }) => {
             height="100%"
             onClick={handlePlayPause}
           >
-            <source src="static/media/reel.mp4" type="video/mp4" />
+            <source src={videoReel} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </Box>
@@ -75,7 +75,7 @@ const Reel: React.FC<ReelProps> = ({ videoRef }) => {
             height="100%"
             onClick={handlePlayPause}
           >
-            <source src="static/media/saigon.mp4" type="video/mp4" />
+            <source src={videoFull} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </Box>
