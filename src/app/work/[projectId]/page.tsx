@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React from "react";
 import getProjectDetailData from "@/app/api/getProjectDetail";
 import ProjectDetail from "@/views/projectDetail/projectDetail";
 
@@ -7,9 +7,7 @@ export default async function WorkDetail({ params }: any) {
 
   return (
     <div>
-      <Suspense fallback="loading...">
-        <ProjectDetail contentData={contentData} />
-      </Suspense>
+      <ProjectDetail contentData={contentData} />
     </div>
   );
 }
