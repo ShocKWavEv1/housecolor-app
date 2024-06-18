@@ -2,22 +2,18 @@
 
 import { Box } from "@chakra-ui/react";
 import { ReelProps } from "./model";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const ReelProject: React.FC<ReelProps> = ({
   videoRef,
   videoFull,
   videoReel,
 }) => {
-  const [showFullReel, setShowFullReel] = useState(false);
   const [isVideoLoading, setIsVideoLoading] = useState(true);
 
   return (
     <Box>
-      <Box
-        display={showFullReel ? "none" : "block"}
-        bg={isVideoLoading ? "lenis" : "black"}
-      >
+      <Box bg={isVideoLoading ? "lenis" : "black"}>
         <video
           controls={false}
           autoPlay={true}
@@ -25,7 +21,8 @@ const ReelProject: React.FC<ReelProps> = ({
           playsInline={true}
           muted
           width="100%"
-          height="100%"
+          height="100vh"
+          preload="none"
           onLoadedData={() => {
             setIsVideoLoading(false);
           }}
