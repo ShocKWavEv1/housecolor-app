@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { ProjectDetailProps } from "./model";
@@ -36,6 +36,8 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ contentData }) => {
     base64,
   } = contentData.projectDetail;
 
+  console.log(JSON.stringify(contentData));
+
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -48,20 +50,14 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ contentData }) => {
         title={[name]}
         categories={[`[ ${handleCategoriesToString(categories)} ]`]}
       />
-      <Suspense fallback={<div>Loading...</div>}>
-        <ReelProject
-          videoRef={videoRef}
-          videoReel={videoFile}
-          videoFull={videoFull}
-        />
-      </Suspense>
+      <ReelProject
+        videoRef={videoRef}
+        videoReel={videoFile}
+        videoFull={videoFull}
+      />
       <Synopsis synopsis={synopsis} />
-      <Suspense fallback={<div>Loading...</div>}>
-        <FullImage image={mainImage} base64={base64} />
-      </Suspense>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Summary sections={sections} />
-      </Suspense>
+      <FullImage image={mainImage} base64={base64} />
+      <Summary sections={sections} />
       <Footer />
     </Box>
   );

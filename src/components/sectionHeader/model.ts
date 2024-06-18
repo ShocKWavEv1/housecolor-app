@@ -1,8 +1,9 @@
 export interface SectionHeaderProps {
-    section: string;
-    title: string;
-    hasButton: boolean;
-    isDark: boolean;
-    brackets?: string;
-    description?: any;
+  section: string;
+  title: string;
+  hasButton: boolean;
+  isDark: boolean;
+  brackets?: string;
+  description?: any;
+  isLoaded?: boolean;
 }

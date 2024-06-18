@@ -13,7 +13,7 @@ const ReelProject: React.FC<ReelProps> = ({
 
   return (
     <Box>
-      <Box bg={isVideoLoading ? "lenis" : "black"}>
+      <Box bg={isVideoLoading ? "egg.200" : "black"}>
         <video
           controls={false}
           autoPlay={true}

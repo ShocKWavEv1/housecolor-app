@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Stack, Text } from "@chakra-ui/react";
+import { Box, Button, Heading, Skeleton, Stack, Text } from "@chakra-ui/react";
 import { SectionHeaderProps } from "./model";
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -8,6 +8,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
   isDark,
   brackets,
   description,
+  isLoaded = true,
 }) => {
   return (
     <Box
@@ -28,38 +29,51 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
           justifyContent="flex-start"
           flexDirection="row"
         >
-          <Text
-            variant="XSMEDIUM"
-            color={isDark ? "egg.400" : "black"}
-            textTransform="lowercase"
-            opacity={0.65}
+          <Skeleton
+            isLoaded={isLoaded}
+            startColor="egg.200"
+            endColor="gray.200"
           >
             <Text
-              as="span"
               variant="XSMEDIUM"
               color={isDark ? "egg.400" : "black"}
               textTransform="lowercase"
               opacity={0.65}
-              pr="5px"
             >
-              ►
+              <Text
+                as="span"
+                variant="XSMEDIUM"
+                color={isDark ? "egg.400" : "black"}
+                textTransform="lowercase"
+                opacity={0.65}
+                pr="5px"
+              >
+                ►
+              </Text>
+              {section}
             </Text>
-            {section}
-          </Text>
+          </Skeleton>
         </Box>
         <Box w="100%" display="flex" flexDirection="column">
-          <Heading
-            variant={[
-              "H7HATTONREGULAR",
-              "H7HATTONREGULAR",
-              "H7HATTONREGULAR",
-              "H7HATTONREGULAR",
-              "H7HATTONREGULAR",
-            ]}
-            color={isDark ? "egg.400" : "black"}
+          <Skeleton
+            isLoaded={isLoaded}
+            startColor="egg.200"
+            endColor="gray.200"
           >
-            {title}
-          </Heading>
+            <Heading
+              variant={[
+                "H7HATTONREGULAR",
+                "H7HATTONREGULAR",
+                "H7HATTONREGULAR",
+                "H7HATTONREGULAR",
+                "H7HATTONREGULAR",
+              ]}
+              color={isDark ? "egg.400" : "black"}
+            >
+              {title}
+            </Heading>
+          </Skeleton>
+
           <Text
             variant={[
               "SMREGULAR",
@@ -84,9 +98,15 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
             description.map((item: any, i: number) => {
               return (
                 <Box w="100%" mt="30px" key={i}>
-                  <Text variant="MDREGULAR" color="egg.400">
-                    {item}
-                  </Text>
+                  <Skeleton
+                    isLoaded={isLoaded}
+                    startColor="egg.200"
+                    endColor="gray.200"
+                  >
+                    <Text variant="MDREGULAR" color="egg.400">
+                      {item}
+                    </Text>
+                  </Skeleton>
                 </Box>
               );
             })}

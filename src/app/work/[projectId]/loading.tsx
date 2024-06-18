@@ -1,9 +1,5 @@
-import { Box } from "@chakra-ui/react";
+import SkeletonProjectDetail from "@/components/skeletonProjectDetail/skeletonProjectDetail";
 
 export default function Loading() {
-  return (
-    <Box w="100%" h="100vh" bg="black" placeItems="center">
-      Hello Loading
-    </Box>
-  );
+  return <SkeletonProjectDetail />;
 }
