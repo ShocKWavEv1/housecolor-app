@@ -65,7 +65,12 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
                   >
                     {item.content.map((content: any, idx: number) => {
                       return (
-                        <Box pl="20px" w="100%" borderLeft="1px solid #F9EBBB">
+                        <Box
+                          key={content}
+                          pl="20px"
+                          w="100%"
+                          borderLeft="1px solid #F9EBBB"
+                        >
                           <Skeleton startColor="egg.200" endColor="gray.200">
                             <Text variant="MDREGULAR" color="egg.400">
                               {content}
@@ -78,7 +83,7 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
                 </Box>
                 {item.images.map((image: any, imgIdx: number) => {
                   return (
-                    <Box w="100%" pt="80px">
+                    <Box key={image} w="100%" pt="80px">
                       <Skeleton startColor="egg.200" endColor="gray.200">
                         <Box w="100%" h="500px" />
                       </Skeleton>
