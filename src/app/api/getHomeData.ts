@@ -3,6 +3,7 @@
 import { ApiFailedError } from "@/app/lib/exceptions/exceptions";
 import { configSanity, handleImagesUrl } from "../lib/sanity/sanity";
 import getBase64 from "./getBase64";
+import { revalidate } from "../lib/revalidate/revalidate";
 
 export default async function getHomeData(): Promise<any> {
   try {
@@ -28,7 +29,7 @@ export default async function getHomeData(): Promise<any> {
 
     const fetchData = async (url: string) => {
       const response = await fetch(url, {
-        next: { revalidate: 10 },
+        next: { revalidate: revalidate },
       });
       if (!response.ok) {
         throw new ApiFailedError();

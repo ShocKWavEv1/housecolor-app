@@ -4,18 +4,20 @@ import { ScrollProvider } from "@/hooks/useLenis";
 import LoadingBar from "react-top-loading-bar";
 import theme from "@/theme/theme";
 import { ChakraProvider } from "@chakra-ui/react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Navbar from "@/components/navbar/navbar";
 import Preloader from "@/components/preloader/preloader";
 import PageTransition from "@/components/pageTransition/pageTransition";
-import { customCursor, resetCursor } from "./lib/gsap/gsap";
 import Cursor from "@/components/cursor/customCursor";
 import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import { customCursor, resetCursor } from "./lib/gsap/gsap";
 
 export function Providers({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const [initCursor, setInitCursor] = useState(false);
+
   const LoadingBarRef: any = useRef(null);
 
   const pathname = usePathname();
@@ -25,16 +27,30 @@ export function Providers({
   const isTouch = useIsTouchDevice();
 
   useEffect(() => {
+    const timeout = setTimeout(() => {
+      setInitCursor(true);
+    }, 500);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    if (initCursor && !isTouch) {
+      customCursor(videoRef);
+    }
+    return () => {
+      if (initCursor && !isTouch) {
+        resetCursor();
+      }
+    };
+  }, [initCursor, isTouch, pathname]);
+
+  useEffect(() => {
     if (LoadingBarRef.current) {
       LoadingBarRef.current.continuousStart();
     }
-    !isTouch &&
-      setTimeout(() => {
-        customCursor(videoRef);
-      }, 500);
-    return () => {
-      !isTouch && resetCursor();
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 
