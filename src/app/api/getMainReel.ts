@@ -21,7 +21,9 @@ export default async function getReelData(): Promise<any> {
     };
 
     const fetchData = async (url: string) => {
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        next: { revalidate: 10 },
+      });
       if (!response.ok) {
         throw new ApiFailedError();
       }
