@@ -33,6 +33,7 @@ export function Providers({
 
     return () => {
       clearTimeout(timeout);
+      setInitCursor(false);
     };
   }, [pathname]);
 
