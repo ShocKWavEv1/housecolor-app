@@ -103,8 +103,8 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
                           src={image.url}
                           alt={image.url}
                           placeholder="blur"
-                          width={400}
-                          height={400}
+                          width={200}
+                          height={200}
                           blurDataURL={image.base64}
                           style={{ width: "100%", objectFit: "cover" }}
                         />

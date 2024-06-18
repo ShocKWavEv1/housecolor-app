@@ -17,9 +17,11 @@ const ErrorPage: React.FC<Props> = ({ error, reset }) => {
       justifyContent="center"
       flexDirection="column"
     >
-      <Heading variant="H7HATTONREGULAR" color="egg.400">
-        {error.message}
-      </Heading>
+      <Box w="90%" textAlign="center">
+        <Heading variant="H7HATTONREGULAR" color="egg.400" textAlign="center">
+          {error.message}
+        </Heading>
+      </Box>
       <Box mt="30px">
         <Button colorScheme="primary" size="xs" onClick={reset}>
           <Text variant="XSREGULAR">Try again</Text>
