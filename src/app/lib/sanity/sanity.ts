@@ -3,7 +3,7 @@ import { createClient } from "@sanity/client";
 export const configSanity = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  useCdn: false,
+  useCdn: true,
   token: process.env.SANITY_TOKEN,
 };
 
