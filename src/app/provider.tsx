@@ -9,7 +9,7 @@ import { usePathname } from "next/navigation";
 import Navbar from "@/components/navbar/navbar";
 import Preloader from "@/components/preloader/preloader";
 import PageTransition from "@/components/pageTransition/pageTransition";
-import { customCursor } from "./lib/gsap/gsap";
+import { customCursor, resetCursor } from "./lib/gsap/gsap";
 import Cursor from "@/components/cursor/customCursor";
 import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 
@@ -32,6 +32,9 @@ export function Providers({
       setTimeout(() => {
         customCursor(videoRef);
       }, 500);
+    return () => {
+      resetCursor();
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
 

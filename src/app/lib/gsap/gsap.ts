@@ -56,3 +56,11 @@ export const customCursor = (videoRef?: any) => {
     link.addEventListener("mouseleave", onMouseLeaveLink);
   });
 };
+
+export const resetCursor = () => {
+  const cursor: any = document.getElementById("custom-cursor");
+  const cursorText: any = document.querySelector(".cursor-text");
+
+  gsap.to(cursor, { width: 15, height: 15, cursor: "pointer" });
+  cursorText.style.display = "none";
+};
