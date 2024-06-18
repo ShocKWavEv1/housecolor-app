@@ -90,7 +90,7 @@ const Phrase = ({
     >
       <Heading
         variant="H7HATTONREGULAR"
-        fontSize="18vw"
+        fontSize={["26vw", "18vw", "18vw", "18vw", "18vw", "18vw"]}
         color="egg.400"
         className={hasStroke ? "text-slider-manifesto-club" : ""}
       >

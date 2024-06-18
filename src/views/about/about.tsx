@@ -58,7 +58,16 @@ const AboutPage: React.FC<AboutPageProps> = ({ contentData, contentReel }) => {
           </Box>
         </Suspense>
       </Box>
-      <Box p="120px 0px 20px 0px">
+      <Box
+        p={[
+          "60px 0px 20px 0px",
+          "60px 0px 20px 0px",
+          "90px 0px 20px 0px",
+          "120px 0px 20px 0px",
+          "120px 0px 20px 0px",
+          "120px 0px 20px 0px",
+        ]}
+      >
         <MarqueeScrollText marqueeText={marqueeText} />
       </Box>
       <Reel
