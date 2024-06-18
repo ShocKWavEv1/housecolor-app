@@ -33,7 +33,7 @@ export function Providers({
         customCursor(videoRef);
       }, 500);
     return () => {
-      resetCursor();
+      !isTouch && resetCursor();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pathname]);
