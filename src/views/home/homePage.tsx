@@ -17,7 +17,9 @@ const ProjectsGrid = dynamic(
   () => import("@/components/projectsGrid/projectsGrid")
 );
 
-const Manifesto = dynamic(() => import("@/components/manifesto/manifesto"));
+const ManifestoReveal = dynamic(
+  () => import("@/components/manifestoReveal/manifestoReveal")
+);
 
 const Reel = dynamic(() => import("@/components/reel/reel"));
 
@@ -43,7 +45,7 @@ const HomePage: React.FC<HomePageProps> = ({ contentData, contentReel }) => {
         <ProjectsGrid projectList={contentData.projects} />
       </Suspense>
       <Clients />
-      <Manifesto />
+      <ManifestoReveal />
       <MarqueeScrollText marqueeText={marqueeText} />
       <Reel
         videoRef={videoRef}

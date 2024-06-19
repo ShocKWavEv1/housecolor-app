@@ -83,7 +83,7 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
             </Text>
           </Box>
           <Box w="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
-            <SimpleGrid w="100%" h="100%" columns={[1, 1, 2, 2, 3]}>
+            <SimpleGrid w="100%" h="100%" columns={[1, 1, 2, 2, 2]}>
               {fullManifestoSteps.map((item: any, i: number) => {
                 return (
                   <Box

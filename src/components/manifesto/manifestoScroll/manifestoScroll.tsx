@@ -20,7 +20,7 @@ const ManifestoScroll: React.FC<ManifestoScrollProps> = () => {
   gsap.registerPlugin(ScrollTrigger);
 
   const text =
-    "We integrate, collaborate and challenge. We are digital natives embracing the creative freedom to produce solutions that connect, communicate, and inspire. ";
+    "We integrate, collaborate and challenge. We are digital natives embracing the creative freedom to produce solutions that connect, communicate, and inspire.";
 
   useEffect(() => {
     const anim = gsap.to(lettersRef.current, {
