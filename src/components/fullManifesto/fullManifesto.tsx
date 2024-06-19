@@ -47,6 +47,7 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
         "120px 80px 0px 80px",
         "120px 80px 0px 80px",
       ]}
+      className="bg-noise"
     >
       <SectionHeader
         section="about"
@@ -63,7 +64,7 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
         flexDirection="column"
       >
         <Box
-          w={["100%", "100%", "80%", "80%", "80%"]}
+          w={["100%", "100%", "100%", "80%", "80%"]}
           h="auto"
           pt={["10px", "30px", "80px", "80px", "80px"]}
           className="split"
@@ -94,7 +95,7 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                 variant={[
                   "LGREGULAR",
                   "XLREGULAR",
-                  "XXLREGULAR",
+                  "XLREGULAR",
                   "XXLREGULAR",
                   "XXLREGULAR",
                 ]}
@@ -128,7 +129,7 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
             </Text>
           </Box>
           <Box w="100%" h="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
-            <SimpleGrid w="100%" h="100%" columns={[1, 1, 2, 2, 2]}>
+            <SimpleGrid w="100%" h="100%" columns={[1, 1, 1, 2, 2]}>
               {fullManifestoSteps.map((item: any, i: number) => {
                 const isLastIndex = i === fullManifestoSteps.length - 1;
                 const isSecondToLastIndex = i === fullManifestoSteps.length - 2;
@@ -182,11 +183,11 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                             delay={0.45}
                             once
                             variant={[
-                              "H9HATTONREGULAR",
                               "H8HATTONREGULAR",
-                              "H8HATTONREGULAR",
-                              "H8HATTONREGULAR",
-                              "H8HATTONREGULAR",
+                              "H7HATTONREGULAR",
+                              "H7HATTONREGULAR",
+                              "H7HATTONREGULAR",
+                              "H7HATTONREGULAR",
                             ]}
                             className=""
                             isFooter={false}
@@ -215,10 +216,10 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                           pt={["40px", "60px", "80px", "80px", "80px"]}
                           variant={[
                             "SMREGULAR",
-                            "MDREGULAR",
-                            "MDREGULAR",
-                            "MDREGULAR",
-                            "MDREGULAR",
+                            "LGREGULAR",
+                            "LGREGULAR",
+                            "LGREGULAR",
+                            "LGREGULAR",
                           ]}
                           color="egg.400"
                         >
