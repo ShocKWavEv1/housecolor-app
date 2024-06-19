@@ -59,7 +59,7 @@ const ManifestoScroll: React.FC<ManifestoScrollProps> = () => {
             {text.split("").map((letter, index) => (
               <Heading
                 as="span"
-                key={index}
+                key={letter + index}
                 variant={[
                   "H6HATTONREGULAR",
                   "H5HATTONREGULAR",

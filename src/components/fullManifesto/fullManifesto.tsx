@@ -1,9 +1,42 @@
+"use client";
+
 import SectionHeader from "@/components/sectionHeader/sectionHeader";
 import { Box, Heading, SimpleGrid, Text } from "@chakra-ui/react";
 import { fullManifestoSteps } from "./constants";
 import { FullManifestoProps } from "./model";
+import { useWindowSize } from "@uidotdev/usehooks";
+import TextMaskY from "@/app/lib/animations/textY/textY";
+import { motion } from "framer-motion";
 
 const FullManifesto: React.FC<FullManifestoProps> = () => {
+  const { width }: { width: any } = useWindowSize();
+
+  const handleBorderRight = (index: any) => {
+    if (width >= 992) {
+      if (index === 0 || index === 2 || index === 4) {
+        return "1px solid";
+      }
+    } else {
+      return;
+    }
+  };
+
+  const handleBorderBottom = (isLastIndex: any, isSecondToLastIndex: any) => {
+    if (width >= 992) {
+      if (isLastIndex) {
+        return "";
+      } else if (isSecondToLastIndex) {
+        return "";
+      }
+      return "1px solid white";
+    } else {
+      if (isLastIndex) {
+        return "";
+      }
+      return "1px solid white";
+    }
+  };
+
   return (
     <Box
       w="100%"
@@ -47,24 +80,36 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
           >
             Allow us to be the cool part of your next project
           </Heading>
-          <Text
-            pt="40px"
-            variant={[
-              "LGREGULAR",
-              "XLREGULAR",
-              "XXLREGULAR",
-              "XXLREGULAR",
-              "XXLREGULAR",
-            ]}
-            color="egg.400"
-          >
-            Housecolor is a Mexican creative studio imagined by Rodrigo Salmerón
-            and Baruc Narvaez. We help brands that do good Tambiéns logo on a
-            flag stand out and find their people by providing a full creative
-            service, videos and courses. We help brands be their most inspiring
-            selves. Own their quirks - their edge - their culture. Help them be
-            confidently attractive. At home, and abroad.
-          </Text>
+          <Box pt="40px">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.75,
+                delay: 0.25,
+              }}
+            >
+              <Text
+                variant={[
+                  "LGREGULAR",
+                  "XLREGULAR",
+                  "XXLREGULAR",
+                  "XXLREGULAR",
+                  "XXLREGULAR",
+                ]}
+                color="egg.400"
+              >
+                Housecolor is a Mexican creative studio imagined by Rodrigo
+                Salmerón and Baruc Narvaez. We help brands that do good Tambiéns
+                logo on a flag stand out and find their people by providing a
+                full creative service, videos and courses. We help brands be
+                their most inspiring selves. Own their quirks - their edge -
+                their culture. Help them be confidently attractive. At home, and
+                abroad.
+              </Text>
+            </motion.div>
+          </Box>
           <Box pt="80px">
             <Heading
               variant={[
@@ -82,9 +127,11 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
               {`[ siguiendo estos principios, desarrollamos las mejores estrategias digitales ]`}
             </Text>
           </Box>
-          <Box w="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
+          <Box w="100%" h="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
             <SimpleGrid w="100%" h="100%" columns={[1, 1, 2, 2, 2]}>
               {fullManifestoSteps.map((item: any, i: number) => {
+                const isLastIndex = i === fullManifestoSteps.length - 1;
+                const isSecondToLastIndex = i === fullManifestoSteps.length - 2;
                 return (
                   <Box
                     key={item.title}
@@ -95,6 +142,12 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                     justifyContent="flex-start"
                     flexDirection="column"
                     p={["60px 20px", "40px", "40px", "40px", "40px"]}
+                    borderRight={handleBorderRight(i)}
+                    borderBottom={handleBorderBottom(
+                      isLastIndex,
+                      isSecondToLastIndex
+                    )}
+                    borderColor="egg.200"
                   >
                     <Box
                       w="100%"
@@ -109,7 +162,10 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                         justifyContent="flex-start"
                         flexDirection="column"
                       >
-                        <Heading
+                        <TextMaskY
+                          text={[item.number]}
+                          delay={0.45}
+                          once
                           variant={[
                             "H9HATTONREGULAR",
                             "H8HATTONREGULAR",
@@ -117,23 +173,25 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                             "H8HATTONREGULAR",
                             "H8HATTONREGULAR",
                           ]}
-                          color="egg.400"
-                        >
-                          {item.number}
-                        </Heading>
-                        <Heading
-                          pt="20px"
-                          variant={[
-                            "H9HATTONREGULAR",
-                            "H8HATTONREGULAR",
-                            "H8HATTONREGULAR",
-                            "H8HATTONREGULAR",
-                            "H8HATTONREGULAR",
-                          ]}
-                          color="egg.400"
-                        >
-                          {item.title}
-                        </Heading>
+                          className=""
+                          isFooter={false}
+                        />
+                        <Box pt="20px">
+                          <TextMaskY
+                            text={[item.title]}
+                            delay={0.45}
+                            once
+                            variant={[
+                              "H9HATTONREGULAR",
+                              "H8HATTONREGULAR",
+                              "H8HATTONREGULAR",
+                              "H8HATTONREGULAR",
+                              "H8HATTONREGULAR",
+                            ]}
+                            className=""
+                            isFooter={false}
+                          />
+                        </Box>
                       </Box>
                     </Box>
                     <Box
@@ -144,19 +202,29 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
                       justifyContent="center"
                       flexDirection="column"
                     >
-                      <Text
-                        pt={["40px", "60px", "80px", "80px", "80px"]}
-                        variant={[
-                          "SMREGULAR",
-                          "MDREGULAR",
-                          "MDREGULAR",
-                          "MDREGULAR",
-                          "MDREGULAR",
-                        ]}
-                        color="egg.400"
+                      <motion.div
+                        initial={{ opacity: 0 }}
+                        whileInView={{ opacity: 1 }}
+                        viewport={{ once: true }}
+                        transition={{
+                          duration: 0.75,
+                          delay: 0.25,
+                        }}
                       >
-                        {item.description}
-                      </Text>
+                        <Text
+                          pt={["40px", "60px", "80px", "80px", "80px"]}
+                          variant={[
+                            "SMREGULAR",
+                            "MDREGULAR",
+                            "MDREGULAR",
+                            "MDREGULAR",
+                            "MDREGULAR",
+                          ]}
+                          color="egg.400"
+                        >
+                          {item.description}
+                        </Text>
+                      </motion.div>
                     </Box>
                   </Box>
                 );

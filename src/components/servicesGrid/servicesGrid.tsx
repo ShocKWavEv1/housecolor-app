@@ -11,8 +11,6 @@ import { useWindowSize } from "@uidotdev/usehooks";
 const ServicesGrid: React.FC<ServicesGridProps> = () => {
   const { width }: { width: any } = useWindowSize();
 
-  console.log(width);
-
   const handleBorderRight = (index: any) => {
     if (width >= 992) {
       if (index === 0 || index === 2 || index === 4) {
