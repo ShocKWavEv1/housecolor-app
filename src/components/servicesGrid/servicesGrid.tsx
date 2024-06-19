@@ -1,11 +1,44 @@
+"use client";
+
 import SectionHeader from "@/components/sectionHeader/sectionHeader";
 import { Box, SimpleGrid, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import { fullServices } from "./constants";
 import { ServicesGridProps } from "./model";
 import TextMaskY from "@/app/lib/animations/textY/textY";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const ServicesGrid: React.FC<ServicesGridProps> = () => {
+  const { width }: { width: any } = useWindowSize();
+
+  console.log(width);
+
+  const handleBorderRight = (index: any) => {
+    if (width >= 992) {
+      if (index === 0 || index === 2 || index === 4) {
+        return "1px solid white";
+      }
+    } else {
+      return;
+    }
+  };
+
+  const handleBorderBottom = (isLastIndex: any, isSecondToLastIndex: any) => {
+    if (width >= 992) {
+      if (isLastIndex) {
+        return "";
+      } else if (isSecondToLastIndex) {
+        return "";
+      }
+      return "1px solid white";
+    } else {
+      if (isLastIndex) {
+        return "";
+      }
+      return "1px solid white";
+    }
+  };
+
   return (
     <Box
       w="100%"
@@ -34,32 +67,36 @@ const ServicesGrid: React.FC<ServicesGridProps> = () => {
         mb="120px"
       >
         <Box
-          w={["100%", "100%", "80%", "80%", "80%"]}
+          w={["100%", "100%", "90%", "90%", "80%"]}
           h="auto"
           mt={["40px", "50px", "80px", "80px", "80px"]}
         >
-          <SimpleGrid width="100%" columns={[1, 1, 2, 2]} spacing="0px">
+          <SimpleGrid width="100%" columns={[1, 1, 1, 2, 2]} spacing="0px">
             {fullServices.map((item: any, i: number) => {
+              const isLastIndex = i === fullServices.length - 1;
+              const isSecondToLastIndex = i === fullServices.length - 2;
               return (
                 <Box
                   p={[
                     "60px 20px",
-                    "60px 30px",
-                    "60px 40px",
+                    "60px 20px",
+                    "60px 20px",
                     "60px 40px",
                     "60px 40px",
                   ]}
                   w="100%"
-                  h={["auto", "auto", "77vh", "77vh", "77vh"]}
+                  h={"auto"}
                   display="flex"
                   alignItems="flex-start"
                   justifyContent="flex-start"
                   flexDirection="column"
                   key={item}
-                  borderRight={
-                    i === 0 || i === 2 || i === 4 ? "1px solid #fff" : ""
-                  }
-                  borderBottom={i === 4 || i === 5 ? "" : "1px solid #fff"}
+                  borderRight={handleBorderRight(i)}
+                  borderBottom={handleBorderBottom(
+                    isLastIndex,
+                    isSecondToLastIndex
+                  )}
+                  borderColor="egg.200"
                 >
                   <Box
                     w="100%"
@@ -88,7 +125,7 @@ const ServicesGrid: React.FC<ServicesGridProps> = () => {
                         delay={0.45}
                         once
                         variant={[
-                          "H8HATTONREGULAR",
+                          "H7HATTONREGULAR",
                           "H7HATTONREGULAR",
                           "H6HATTONREGULAR",
                           "H6HATTONREGULAR",
@@ -108,18 +145,19 @@ const ServicesGrid: React.FC<ServicesGridProps> = () => {
                     flexDirection="column"
                   >
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
                       transition={{
                         duration: 0.75,
+                        delay: 0.25,
                       }}
                     >
                       <Text
-                        pt={["80px", "80px", "0px", "0px", "0px"]}
+                        pt={"80px"}
                         variant={[
                           "MDREGULAR",
-                          "MDREGULAR",
+                          "LGREGULAR",
                           "LGREGULAR",
                           "LGREGULAR",
                           "LGREGULAR",

@@ -95,7 +95,6 @@ const Steps: React.FC<StepsProps> = ({ steps }) => {
                       viewport={{ once: true }}
                       transition={{
                         duration: 1,
-                        delay: 0.25,
                       }}
                     >
                       <Box w="100%" pt="80px">
