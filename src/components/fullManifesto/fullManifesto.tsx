@@ -23,9 +23,7 @@ const FullManifesto: React.FC<FullManifestoProps> = () => {
 
   const handleBorderBottom = (isLastIndex: any, isSecondToLastIndex: any) => {
     if (width >= 992) {
-      if (isLastIndex) {
-        return "";
-      } else if (isSecondToLastIndex) {
+      if (isLastIndex || isSecondToLastIndex) {
         return "";
       }
       return "1px solid white";

@@ -6,10 +6,14 @@ import Image from "next/image";
 import { useTransform, useScroll, motion } from "framer-motion";
 import { ParallaxGridProps } from "./model";
 import { Box } from "@chakra-ui/react";
+import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import { useWindowSize } from "@uidotdev/usehooks";
 
 const ParallaxGrid: React.FC<ParallaxGridProps> = ({ parallaxGrid }) => {
   const gallery = useRef(null);
   const [dimension, setDimension] = useState({ width: 0, height: 0 });
+  const isTouch = useIsTouchDevice();
+  const { width }: { width: any } = useWindowSize();
 
   const { scrollYProgress } = useScroll({
     target: gallery,
@@ -37,24 +41,55 @@ const ParallaxGrid: React.FC<ParallaxGridProps> = ({ parallaxGrid }) => {
 
   return (
     <Box className={styles.main}>
-      <Box ref={gallery} className={styles.gallery}>
-        <Column
-          images={[parallaxGrid[0], parallaxGrid[1], parallaxGrid[2]]}
-          y={y}
-        />
-        <Column
-          images={[parallaxGrid[3], parallaxGrid[4], parallaxGrid[5]]}
-          y={y2}
-        />
-        <Column
-          images={[parallaxGrid[6], parallaxGrid[7], parallaxGrid[8]]}
-          y={y3}
-        />
-        <Column
-          images={[parallaxGrid[9], parallaxGrid[10], parallaxGrid[11]]}
-          y={y4}
-        />
-      </Box>
+      {isTouch && width <= 564 ? (
+        <Box
+          w="100%"
+          h="auto"
+          display="flex"
+          gap="2vw"
+          flexDirection="column"
+          overflow="hidden"
+        >
+          {Array.from({ length: 3 }, (_, index) => (
+            <Box w="100%" h="auto" position="relative" key={index}>
+              <Image
+                src={parallaxGrid[index + 6]?.mainImage}
+                alt="image"
+                placeholder="blur"
+                width={400}
+                height={400}
+                blurDataURL={parallaxGrid[index]?.base64}
+              />
+              <Box
+                w="100%"
+                h="100%"
+                position="absolute"
+                top={0}
+                bg="rgba(0,0,0,.75)"
+              />
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        <Box ref={gallery} className={styles.gallery}>
+          <Column
+            images={[parallaxGrid[0], parallaxGrid[1], parallaxGrid[2]]}
+            y={y}
+          />
+          <Column
+            images={[parallaxGrid[3], parallaxGrid[4], parallaxGrid[5]]}
+            y={y2}
+          />
+          <Column
+            images={[parallaxGrid[6], parallaxGrid[7], parallaxGrid[8]]}
+            y={y3}
+          />
+          <Column
+            images={[parallaxGrid[9], parallaxGrid[10], parallaxGrid[11]]}
+            y={y4}
+          />
+        </Box>
+      )}
     </Box>
   );
 };

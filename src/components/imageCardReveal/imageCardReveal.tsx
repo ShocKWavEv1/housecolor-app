@@ -30,7 +30,7 @@ const ImageCardReveal: React.FC<ImageCardRevealProps> = ({
         <Box
           ref={ref}
           w="100%"
-          h={["auto", "600px", "600px", "600px", "600px", "600px"]}
+          h={"auto"}
           display="flex"
           alignItems="center"
           justifyContent="center"

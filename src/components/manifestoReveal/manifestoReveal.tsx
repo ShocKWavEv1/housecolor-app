@@ -96,7 +96,7 @@ function Paragraph({ paragraph }: { paragraph: string }) {
   const container = useRef(null);
   const { scrollYProgress } = useScroll({
     target: container,
-    offset: ["start 0.45", "start 0.0002"],
+    offset: ["start end", "end start"],
   });
 
   const words = paragraph.split(" ");
