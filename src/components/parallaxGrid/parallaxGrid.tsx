@@ -39,53 +39,10 @@ const ParallaxGrid: React.FC<ParallaxGridProps> = ({ parallaxGrid }) => {
   const y3 = useTransform(scrollYProgress, [0, 1], [0, height * 1.25]);
   const y4 = useTransform(scrollYProgress, [0, 1], [0, height * 3]);
 
-  const mobileParallaxGrid = [{ number: 9 }, { number: 3 }];
-
   return (
     <Box className={styles.main}>
       {isTouch && width <= 564 ? (
-        <Box
-          w="100%"
-          h="170vh"
-          display="flex"
-          padding="2vw"
-          gap="2vw"
-          overflow="hidden"
-          flexDirection="row"
-        >
-          {mobileParallaxGrid.map((item, index) => {
-            return (
-              <Box
-                key={item.number}
-                w="25%"
-                minW="400px"
-                gap="2vw"
-                display="flex"
-                flexDirection="column"
-              >
-                {Array.from({ length: 3 }, (_, index) => (
-                  <Box h="auto" position="relative" key={index + item.number}>
-                    <Image
-                      src={parallaxGrid[item.number + index]?.mainImage}
-                      alt="image"
-                      placeholder="blur"
-                      width={400}
-                      height={400}
-                      blurDataURL={parallaxGrid[index]?.base64}
-                    />
-                    <Box
-                      w="100%"
-                      h="100%"
-                      position="absolute"
-                      top={0}
-                      bg="rgba(0,0,0,.45)"
-                    />
-                  </Box>
-                ))}
-              </Box>
-            );
-          })}
-        </Box>
+        <MobileColumn parallaxGrid={parallaxGrid} />
       ) : (
         <Box ref={gallery} className={styles.gallery}>
           <Column
@@ -129,5 +86,54 @@ const Column = ({ images, y }: { images: any; y: any }) => {
         );
       })}
     </motion.div>
+  );
+};
+
+const MobileColumn = ({ parallaxGrid }: { parallaxGrid: any }) => {
+  const mobileParallaxGrid = [{ number: 9 }, { number: 3 }];
+
+  return (
+    <Box
+      w="100%"
+      h="170vh"
+      display="flex"
+      padding="2vw"
+      gap="2vw"
+      overflow="hidden"
+      flexDirection="row"
+    >
+      {mobileParallaxGrid.map((item, index) => {
+        return (
+          <Box
+            key={item.number}
+            w="25%"
+            minW="400px"
+            gap="2vw"
+            display="flex"
+            flexDirection="column"
+          >
+            {Array.from({ length: 3 }, (_, index) => (
+              <Box h="auto" position="relative" key={index + item.number}>
+                <Image
+                  src={parallaxGrid[item.number + index]?.mainImage}
+                  alt="image"
+                  placeholder="blur"
+                  width={400}
+                  height={400}
+                  blurDataURL={parallaxGrid[index]?.base64}
+                />
+                <Box
+                  w="100%"
+                  h="100%"
+                  position="absolute"
+                  top={0}
+                  bg="rgba(0,0,0,.45)"
+                />
+              </Box>
+            ))}
+          </Box>
+        );
+      })}
+    </Box>
   );
 };
