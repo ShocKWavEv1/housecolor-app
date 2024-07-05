@@ -1,3 +1,1 @@
-export const revalidate = 5;
-
-export const noRevalidate = 0;
+export const revalidate = 1;
