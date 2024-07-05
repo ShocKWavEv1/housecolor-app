@@ -30,7 +30,6 @@ export default async function getHomeData(): Promise<any> {
     const fetchData = async (url: string) => {
       const response = await fetch(url, {
         cache: url === urls.projects ? "no-store" : "force-cache",
-        next: { revalidate: url === urls.projects ? 0 : revalidate },
       });
       if (!response.ok) {
         throw new ApiFailedError();
