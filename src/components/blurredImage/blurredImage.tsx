@@ -14,7 +14,7 @@ const BlurredImage: React.FC<BlurredImageProps> = ({ image, base64 }) => {
         src={image}
         alt={image}
         placeholder="blur"
-        blurDataURL={base64}
+        blurDataURL={base64 ? base64 : ""}
         width={500}
         height={600}
         style={{ width: "100%", objectFit: "cover" }}
