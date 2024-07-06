@@ -1,12 +1,14 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { Box } from "@chakra-ui/react";
 import { ProjectDetailProps } from "./model";
 import { handleCategoriesToString } from "@/app/lib/sanity/sanity";
 import MainTitle from "@/components/projectDetail/mainTitle/mainTitle";
 import Footer from "@/components/footer/footer";
+import useSWR from "swr";
+import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 
 const FullImage = dynamic(
   () => import("@/components/projectDetail/fullImage/fullImage")
@@ -25,8 +27,12 @@ const ReelProject = dynamic(
 );
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ contentData }) => {
+  const [currentProject, setCurrentProject] = useState<any>(
+    contentData.projectDetail
+  );
   const {
     name,
+    slug,
     categories,
     mainImage,
     sections,
@@ -34,15 +40,27 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ contentData }) => {
     videoFile,
     videoFull,
     base64,
-  } = contentData.projectDetail;
-
-  console.log(JSON.stringify(contentData));
+  } = currentProject;
 
   const videoRef = useRef(null);
+
+  const { data, isLoading } = useSWR(
+    `/api/projectDetail/${slug.current}`,
+    fetcher,
+    swrOptions
+  );
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const projectDetailSWR = data.projectDetail;
+      setCurrentProject(projectDetailSWR);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
 
   return (
     <Box w="100%" h="auto" bg="black" placeItems="center">

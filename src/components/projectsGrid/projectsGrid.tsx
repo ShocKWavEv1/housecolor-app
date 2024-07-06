@@ -6,19 +6,13 @@ import ColumnImages from "./columnImages/columnImages";
 import { useEffect, useState } from "react";
 import { ProjectsGridProps } from "./model";
 import useSWR from "swr";
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
+import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 
 const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projectList }) => {
   const [projectFirstColumn, setProjectFirstColumn] = useState([]);
   const [projectSecondColumn, setProjectSecondColumn] = useState([]);
 
-  const options = {
-    revalidateOnMount: true,
-    revalidateOnFocus: false,
-  };
-
-  const { data, error, isLoading } = useSWR("/api/projects", fetcher, options);
+  const { data, isLoading } = useSWR("/api/projects", fetcher, swrOptions);
 
   useEffect(() => {
     handleProjectsData(projectList);

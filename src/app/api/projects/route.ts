@@ -35,10 +35,15 @@ export async function GET() {
       return Promise.all(
         items.map(async (item: any) => {
           const mainImage = handleImagesUrl(item.mainImage.asset._ref);
+          const shortImage = handleImagesUrl(item.shortImage.asset._ref);
           const base64 =
+            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAECAIAAAArjXluAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJUlEQVR4nGO4c+d2bUsPAzMzQ3vPRAYnJ6f+vh6GBw8efP/+HQCseA2/ytznCwAAAABJRU5ErkJggg==";
+          const base64Short =
             "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAECAIAAAArjXluAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJUlEQVR4nGO4c+d2bUsPAzMzQ3vPRAYnJ6f+vh6GBw8efP/+HQCseA2/ytznCwAAAABJRU5ErkJggg==";
           item.mainImage = mainImage;
           item.base64 = base64;
+          item.shortImage = shortImage;
+          item.base64Short = base64Short;
           return item;
         })
       );

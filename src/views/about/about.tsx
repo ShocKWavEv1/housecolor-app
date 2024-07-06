@@ -53,7 +53,9 @@ const AboutPage: React.FC<AboutPageProps> = ({ contentData, contentReel }) => {
         <Suspense fallback="loading...">
           <Box w="100%" mt={["40px", "50px", "80px", "80px", "80px"]}>
             {contentData?.projects.map((item: any, i: number) => {
-              return <ThumbnailProject key={item.title} project={item} />;
+              return (
+                <ThumbnailProject key={item.title} project={item} index={i} />
+              );
             })}
           </Box>
         </Suspense>

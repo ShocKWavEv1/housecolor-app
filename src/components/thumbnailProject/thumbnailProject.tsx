@@ -3,19 +3,35 @@
 import { Box, Heading, Text } from "@chakra-ui/react";
 import { ThumbnailProjectProps } from "./model";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { anim } from "./constants";
 import Image from "next/image";
 import Link from "next/link";
 import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
+import useSWR from "swr";
+import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 
-const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
+const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({
+  project,
+  index,
+}) => {
+  const [currentProject, setCurrentProject] = useState(project);
   const [isActive, setIsActive] = useState(false);
 
   const isTouchableDevice = useIsTouchDevice();
 
+  const { data, isLoading } = useSWR("/api/projects", fetcher, swrOptions);
+
+  useEffect(() => {
+    if (!isLoading) {
+      const projectListSWR = data.projects;
+      setCurrentProject(projectListSWR[index]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
   return (
-    <Link href={`/work/${project.slug.current}`} prefetch>
+    <Link href={`/work/${currentProject?.slug?.current}`} prefetch>
       <Box
         w="100%"
         display="flex"
@@ -52,7 +68,7 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
                 color="egg.400"
                 pr="10px"
               >
-                {`[ ${project.number} ]`}
+                {`[ ${currentProject?.number} ]`}
               </Text>
             </Box>
             <Heading
@@ -67,7 +83,7 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
               ]}
               color="egg.400"
             >
-              {project.splittedNames[0].name_1}
+              {currentProject?.splittedNames[0]?.name_1}
             </Heading>
             <motion.div
               variants={anim}
@@ -76,10 +92,14 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
             >
               <Box w={["100px", "120px", "150px", "180px", "200px"]} h="100px">
                 <Image
-                  src={project.shortImage}
+                  src={currentProject?.shortImage}
                   alt="thumbnail"
                   placeholder="blur"
-                  blurDataURL={project.base64Short}
+                  blurDataURL={
+                    currentProject?.base64Short
+                      ? currentProject?.base64Short
+                      : currentProject?.base64
+                  }
                   sizes="10vw"
                   width={150}
                   height={150}
@@ -104,7 +124,7 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ project }) => {
               color="egg.400"
               ml={"2000px"}
             >
-              {project.splittedNames[0].name_2}
+              {currentProject?.splittedNames[0]?.name_2}
             </Heading>
           </Box>
         </Box>
