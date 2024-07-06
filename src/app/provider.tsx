@@ -29,7 +29,7 @@ export function Providers({
   useEffect(() => {
     const timeout = setTimeout(() => {
       setInitCursor(true);
-    }, 500);
+    }, 1000);
 
     return () => {
       clearTimeout(timeout);

@@ -5,51 +5,39 @@ import SectionHeader from "../sectionHeader/sectionHeader";
 import ColumnImages from "./columnImages/columnImages";
 import { useEffect, useState } from "react";
 import { ProjectsGridProps } from "./model";
-import { configSanity, handleImagesUrl } from "@/app/lib/sanity/sanity";
+import useSWR from "swr";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projectList }) => {
-  const [currentProjectList, setCurrentProjectList] = useState(projectList);
   const [projectFirstColumn, setProjectFirstColumn] = useState([]);
   const [projectSecondColumn, setProjectSecondColumn] = useState([]);
 
-  const { projectId, dataset } = configSanity;
-
-  const queries = {
-    projects: `*[ _type == "projects" ] | order(_createdAt asc)`,
+  const options = {
+    revalidateOnMount: true,
+    revalidateOnFocus: false,
   };
 
-  const urls = {
-    projects: `https://${projectId}.api.sanity.io/v1/data/query/${dataset}?query=${encodeURIComponent(
-      queries.projects
-    )}`,
-  };
+  const { data, error, isLoading } = useSWR("/api/projects", fetcher, options);
 
   useEffect(() => {
-    const arr: any = [];
-    fetch(urls.projects)
-      .then((response) => response.json())
-      .then((data) => {
-        const items = data.result;
-
-        items.forEach(async (item: any) => {
-          const mainImage = handleImagesUrl(item.mainImage.asset._ref);
-          const base64 =
-            "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAAECAIAAAArjXluAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAJUlEQVR4nGO4c+d2bUsPAzMzQ3vPRAYnJ6f+vh6GBw8efP/+HQCseA2/ytznCwAAAABJRU5ErkJggg==";
-          item.mainImage = mainImage;
-          item.base64 = base64;
-          arr.push(item);
-          return item;
-        });
-
-        setCurrentProjectList(arr);
-      });
+    handleProjectsData(projectList);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
+    if (!isLoading) {
+      const projectListSWR = data.projects;
+      handleProjectsData(projectListSWR);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoading]);
+
+  const handleProjectsData = (currentProject: any) => {
     const firstColumn: any = [];
     const secondColumn: any = [];
 
-    currentProjectList.forEach((element: any, index: any) => {
+    currentProject.forEach((element: any, index: any) => {
       if (index % 2 === 0) {
         firstColumn.push(element);
       } else {
@@ -59,8 +47,7 @@ const ProjectsGrid: React.FC<ProjectsGridProps> = ({ projectList }) => {
 
     setProjectFirstColumn(firstColumn);
     setProjectSecondColumn(secondColumn);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentProjectList]);
+  };
 
   return (
     <Box
