@@ -24,12 +24,15 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ projects }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
-  return (
-    currentProject &&
-    currentProject.map((currentProject: any, index: number) => {
-      return <ThumbnailItem currentProject={currentProject} index={index} />;
-    })
-  );
+  return currentProject.map((currentProject: any, index: number) => {
+    return (
+      <ThumbnailItem
+        key={currentProject.slug.current}
+        currentProject={currentProject}
+        index={index}
+      />
+    );
+  });
 };
 
 export default ThumbnailProject;
