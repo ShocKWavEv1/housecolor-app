@@ -11,27 +11,41 @@ import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 import useSWR from "swr";
 import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 
-const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({
-  project,
-  index,
-}) => {
-  const [currentProject, setCurrentProject] = useState(project);
-  const [isActive, setIsActive] = useState(false);
-
-  const isTouchableDevice = useIsTouchDevice();
+const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ projects }) => {
+  const [currentProject, setCurrentProject] = useState(projects);
 
   const { data, isLoading } = useSWR("/api/projects", fetcher, swrOptions);
 
   useEffect(() => {
     if (!isLoading) {
       const projectListSWR = data.projects;
-      setCurrentProject(projectListSWR[index]);
+      setCurrentProject(projectListSWR);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
 
   return (
-    <Link href={`/work/${currentProject?.slug?.current}`} prefetch>
+    currentProject &&
+    currentProject.map((currentProject: any, index: number) => {
+      return <ThumbnailItem currentProject={currentProject} index={index} />;
+    })
+  );
+};
+
+export default ThumbnailProject;
+
+const ThumbnailItem = ({
+  currentProject,
+  index,
+}: {
+  currentProject: any;
+  index: number;
+}) => {
+  const [isActive, setIsActive] = useState(false);
+  const isTouchableDevice = useIsTouchDevice();
+
+  return (
+    <Link key={index} href={`/work/${currentProject?.slug?.current}`} prefetch>
       <Box
         w="100%"
         display="flex"
@@ -132,5 +146,3 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({
     </Link>
   );
 };
-
-export default ThumbnailProject;
