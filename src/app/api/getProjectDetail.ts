@@ -74,6 +74,12 @@ export default async function getProjectDetailData(
 
     const projectDetail = await processData(result.result);
 
+    if (!projectDetail.length) {
+      return {
+        error: "Project not found",
+      };
+    }
+
     return {
       projectDetail: projectDetail[0],
     };
