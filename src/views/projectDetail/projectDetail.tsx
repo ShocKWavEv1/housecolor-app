@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { ProjectDetailProps } from "./model";
 import { handleCategoriesToString } from "@/app/lib/sanity/sanity";
 import MainTitle from "@/components/projectDetail/mainTitle/mainTitle";
@@ -11,6 +11,7 @@ import Footer from "@/components/footer/footer";
 import useSWR from "swr";
 import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 import SkeletonProjectDetail from "@/components/skeletonProjectDetail/skeletonProjectDetail";
+import Link from "next/link";
 
 const FullImage = dynamic(
   () => import("@/components/projectDetail/fullImage/fullImage")
@@ -65,10 +66,16 @@ const ProjectDetail: React.FC<ProjectDetailProps> = () => {
         display="flex"
         justifyContent="center"
         alignItems="center"
+        flexDirection="column"
       >
-        <Heading variant="H4HATTONREGULAR" color="egg.400" textAlign="center">
+        <Heading variant="H5HATTONREGULAR" color="egg.400" textAlign="center">
           No project found
         </Heading>
+        <Link href="/work" prefetch>
+          <Button mt="20px" colorScheme="primary" size="sm">
+            <Text variant="XSREGULAR">See all projects</Text>
+          </Button>
+        </Link>
       </Box>
     );
   }
