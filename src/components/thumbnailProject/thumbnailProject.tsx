@@ -73,7 +73,10 @@ const ThumbnailItem = ({
             }}
             className={`project image-gallery `}
           >
-            <Box w="auto">
+            <Box
+              w="auto"
+              display={["none", "block", "block", "block", "block"]}
+            >
               <Text
                 variant={[
                   "XSSREGULAR",
@@ -91,7 +94,7 @@ const ThumbnailItem = ({
             <Heading
               className="thumbnail-text"
               variant={[
-                "H9HATTONREGULAR",
+                "H8HATTONREGULAR",
                 "H7HATTONREGULAR",
                 "H7HATTONREGULAR",
                 "H7HATTONREGULAR",
@@ -131,7 +134,7 @@ const ThumbnailItem = ({
             <Heading
               className="thumbnail-text"
               variant={[
-                "H9HATTONREGULAR",
+                "H8HATTONREGULAR",
                 "H7HATTONREGULAR",
                 "H7HATTONREGULAR",
                 "H7HATTONREGULAR",

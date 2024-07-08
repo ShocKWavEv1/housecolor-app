@@ -19,11 +19,11 @@ const SkeletonProjectDetail: React.FC<SkeletonProjectDetailProps> = () => {
         title={skeletonSchema.name}
         categories={["[ Correción de color, Edición ]"]}
       />
-      <Skeleton startColor="egg.200" endColor="gray.200">
+      <Skeleton startColor="egg.200" endColor="egg.300">
         <Box w="100%" h="100vh" />
       </Skeleton>
       <Synopsis synopsis={skeletonSchema.synopsis} />
-      <Skeleton startColor="egg.200" endColor="gray.200">
+      <Skeleton startColor="egg.200" endColor="egg.300">
         <Box w="100%" h="80vh" />
       </Skeleton>
       <Summary sections={skeletonSchema.sections} />
