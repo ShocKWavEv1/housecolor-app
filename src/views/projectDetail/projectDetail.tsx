@@ -12,6 +12,7 @@ import useSWR from "swr";
 import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 import SkeletonProjectDetail from "@/components/skeletonProjectDetail/skeletonProjectDetail";
 import Link from "next/link";
+import MoreProjects from "@/components/projectDetail/moreProjects/moreProjects";
 
 const FullImage = dynamic(
   () => import("@/components/projectDetail/fullImage/fullImage")
@@ -102,6 +103,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = () => {
           base64={currentProject?.base64}
         />
         <Summary sections={currentProject?.sections} />
+        <MoreProjects currentProjectSlug={params.projectId} />
         <Footer />
       </Box>
     )

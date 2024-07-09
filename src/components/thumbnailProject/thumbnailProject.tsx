@@ -11,7 +11,10 @@ import { useIsTouchDevice } from "@/hooks/useIsTouchDevice";
 import useSWR from "swr";
 import { fetcher, swrOptions } from "@/app/lib/swrConfig/swrConfig";
 
-const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ projects }) => {
+const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({
+  projects,
+  currentProjectSlug,
+}) => {
   const [currentProject, setCurrentProject] = useState(projects);
 
   const { data, isLoading } = useSWR("/api/projects", fetcher, swrOptions);
@@ -19,7 +22,10 @@ const ThumbnailProject: React.FC<ThumbnailProjectProps> = ({ projects }) => {
   useEffect(() => {
     if (!isLoading) {
       const projectListSWR = data.projects;
-      setCurrentProject(projectListSWR);
+      const filteredProjects = data.projects.filter((project: any) => {
+        return project.slug.current !== currentProjectSlug;
+      });
+      setCurrentProject(currentProjectSlug ? filteredProjects : projectListSWR);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoading]);
@@ -73,10 +79,7 @@ const ThumbnailItem = ({
             }}
             className={`project image-gallery `}
           >
-            <Box
-              w="auto"
-              display={["none", "block", "block", "block", "block"]}
-            >
+            <Box w="auto" display={["none", "none", "none", "none", "none"]}>
               <Text
                 variant={[
                   "XSSREGULAR",
