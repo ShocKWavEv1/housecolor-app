@@ -70,7 +70,7 @@ export function Providers({
 
   return (
     <ChakraProvider theme={theme}>
-      <Preloader />
+      {/* <Preloader /> */}
       <LoadingBar ref={LoadingBarRef} height={3} color="#ff98a2" />
       {!isTouch && <Cursor />}
       <PageTransition pathname={pathname}>
